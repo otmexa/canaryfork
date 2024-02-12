@@ -1291,9 +1291,6 @@ void Creature::onGainExperience(uint64_t gainExp, std::shared_ptr<Creature> targ
 		}
 
 		TextMessage message(MESSAGE_EXPERIENCE_OTHERS, fmt::format("{} gained {} experience point{}.", ucfirst(getNameDescription()), gainExp, (gainExp != 1 ? "s" : "")));
-		message.position = position;
-		message.primary.color = TEXTCOLOR_LIGHTGREEN;
-		message.primary.value = gainExp;
 
 		for (const auto &spectator : spectators) {
 			spectator->getPlayer()->sendTextMessage(message);
