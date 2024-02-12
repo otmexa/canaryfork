@@ -2372,7 +2372,7 @@ void Player::addExperience(std::shared_ptr<Creature> target, uint64_t exp, bool 
 		TextMessage message(MESSAGE_EXPERIENCE, "You gained " + expString + (handleHazardExperience ? " (Hazard)" : ""));
 		message.position = position;
 		message.primary.value = exp;
-		message.primary.color = TEXTCOLOR_WHITE_EXP;
+		message.primary.color = TEXTCOLOR_LIGHTGREEN;
 		sendTextMessage(message);
 
 		auto spectators = Spectators().find<Player>(position);
