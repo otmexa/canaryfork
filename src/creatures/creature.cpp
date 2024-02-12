@@ -1271,7 +1271,6 @@ bool Creature::deprecatedOnKilledCreature(std::shared_ptr<Creature> target, bool
 }
 
 void Creature::onGainExperience(uint64_t gainExp, std::shared_ptr<Creature> target) {
-	metrics::method_latency measure(__METHOD_NAME__);
 	auto master = getMaster();
 	if (gainExp == 0 || !master) {
 		return;
@@ -1291,9 +1290,6 @@ void Creature::onGainExperience(uint64_t gainExp, std::shared_ptr<Creature> targ
 		}
 
 
-		for (const auto &spectator : spectators) {
-			spectator->getPlayer()->sendTextMessage(message);
-		}
 	}
 }
 
