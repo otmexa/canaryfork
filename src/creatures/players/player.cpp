@@ -2369,7 +2369,7 @@ void Player::addExperience(std::shared_ptr<Creature> target, uint64_t exp, bool 
 			}
 		}
 
-		TextMessage message(MESSAGE_EXPERIENCE, "You gained " + expString + (handleHazardExperience ? " (Hazard)" : ""));
+		TextMessage message(MESSAGE_LOGIN, "You gained " + expString + (handleHazardExperience ? " (Hazard)" : ""));
 		message.position = position;
 		message.primary.value = exp;
 		message.primary.color = TEXTCOLOR_WHITE_EXP;
@@ -2378,7 +2378,7 @@ void Player::addExperience(std::shared_ptr<Creature> target, uint64_t exp, bool 
 		auto spectators = Spectators().find<Player>(position);
 		spectators.erase(static_self_cast<Player>());
 		if (!spectators.empty()) {
-			message.type = MESSAGE_EXPERIENCE_OTHERS;
+			message.type = MESSAGE_LOGIN;
 			message.text = getName() + " gained " + expString;
 			for (std::shared_ptr<Creature> spectator : spectators) {
 				spectator->getPlayer()->sendTextMessage(message);
@@ -2462,7 +2462,7 @@ void Player::removeExperience(uint64_t exp, bool sendText /* = false*/) {
 
 		std::string expString = fmt::format("You lost {} experience point{}.", lostExp, (lostExp != 1 ? "s" : ""));
 
-		TextMessage message(MESSAGE_EXPERIENCE, expString);
+		TextMessage message(MESSAGE_LOGIN, expString);
 		message.position = position;
 		message.primary.value = lostExp;
 		message.primary.color = TEXTCOLOR_RED;
@@ -2471,7 +2471,7 @@ void Player::removeExperience(uint64_t exp, bool sendText /* = false*/) {
 		auto spectators = Spectators().find<Player>(position);
 		spectators.erase(static_self_cast<Player>());
 		if (!spectators.empty()) {
-			message.type = MESSAGE_EXPERIENCE_OTHERS;
+			message.type = MESSAGE_LOGIN;
 			message.text = getName() + " lost " + expString;
 			for (std::shared_ptr<Creature> spectator : spectators) {
 				spectator->getPlayer()->sendTextMessage(message);
