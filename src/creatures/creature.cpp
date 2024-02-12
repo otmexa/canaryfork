@@ -1271,27 +1271,20 @@ bool Creature::deprecatedOnKilledCreature(std::shared_ptr<Creature> target, bool
 }
 
 void Creature::onGainExperience(uint64_t gainExp, std::shared_ptr<Creature> target) {
-	auto master = getMaster();
-	if (gainExp == 0 || !master) {
-		return;
-	}
+    metrics::method_latency measure(__METHOD_NAME__);
+    auto master = getMaster();
+    if (gainExp == 0 || !master) {
+        return;
+    }
 
-	std::shared_ptr<Monster> m = getMonster();
-	if (!m->isFamiliar()) {
-		gainExp /= 2;
-	}
+    std::shared_ptr<Monster> m = getMonster();
+    if (!m->isFamiliar()) {
+        gainExp /= 2;
+    }
 
-	master->onGainExperience(gainExp, target);
-
-	if (!m->isFamiliar()) {
-		auto spectators = Spectators().find<Player>(position);
-		if (spectators.empty()) {
-			return;
-		}
-
-
-	}
+    master->onGainExperience(gainExp, target);
 }
+
 
 bool Creature::setMaster(std::shared_ptr<Creature> newMaster, bool reloadCreature /* = false*/) {
 	metrics::method_latency measure(__METHOD_NAME__);
