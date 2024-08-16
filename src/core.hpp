@@ -1,5 +1,5 @@
 /**
- * Canary - A free and open-source MMORPG server emulator test
+ * Canary - A free and open-source MMORPG server emulator test2
  * Copyright (©) 2019-2022 OpenTibiaBR <opentibiabr@outlook.com>
  * Repository: https://github.com/opentibiabr/canary
  * License: https://github.com/opentibiabr/canary/blob/main/LICENSE
