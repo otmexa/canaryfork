@@ -25,6 +25,5 @@ Global = {
 	Storage = {
 		FamiliarSummonEvent10 = 30054,
 		FamiliarSummonEvent60 = 30055,
-		CobraFlask = 30056,
 	},
 }
